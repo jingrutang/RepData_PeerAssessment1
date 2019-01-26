@@ -1,9 +1,14 @@
+
+## Loading and preprocessing the data
 if (!file.exists('activity.csv')) {
   unzip(zipfile = "activity.zip")
 }
 
 activityData <- read.csv(file="activity.csv", header=TRUE)
-What is mean total number of steps taken per day?
+
+## What is mean total number of steps taken per day?
+activityData <- read.csv(file="activity.csv", header=TRUE)3
+activityData <- read.csv(file="activity.csv", header=TRUE
 # Calculate the total steps taken per day
 totalSteps <- aggregate(steps ~ date, activityData, FUN=sum)
 
@@ -11,13 +16,16 @@ totalSteps <- aggregate(steps ~ date, activityData, FUN=sum)
 hist(totalSteps$steps,
      main = "Total Steps per Day",
      xlab = "Number of Steps")
+                             
 
 # Calculate and report the mean and median of total steps taken per day
 meanSteps <- mean(totalSteps$steps, na.rm = TRUE)
 medSteps <- median(totalSteps$steps, na.rm = TRUE)
-Mean Number of Steps Taken per Day = 1.076618910^{4}
-Median Number of Steps Taken per Day = 10765
-What is the average daily activity pattern?
+#Mean Number of Steps Taken per Day = 1.076618910^{4}
+#Median Number of Steps Taken per Day = 10765
+                        
+                         
+## What is the average daily activity pattern?
 # Make a time-series plot of the 5-minute interval and the average number of
 # steps taken, averaged acoss all days.
 library(ggplot2)
@@ -31,7 +39,7 @@ ggplot(data = meanStepsByInt, aes(x = interval, y = steps)) +
 
 # Which 5-minute interval across all days contain the maximum number of steps
 maxInt <- meanStepsByInt[which.max(meanStepsByInt$steps),]
-Imputing Missing Values
+## Imputing Missing Values
 # Calculate and report the total number of missing values in the dataset
 missingVals <- is.na(activityData$steps)
 
@@ -57,8 +65,9 @@ impMedSteps <- median(impStepsByInt$steps, na.rm = TRUE)
 diffMean = impMeanSteps - meanSteps
 diffMed = impMedSteps - medSteps
 diffTotal = sum(impStepsByInt$steps) - sum(totalSteps$steps)
-There is a difference of 0 in the mean steps of the two dataset. There is a difference of -1.076381110^{4} in the median steps of the two dataset. There is a difference of 8.612950910^{4} in the total steps of the two dataset.
-Are there differences in activity patterns between weekdays and weekends?
+# There is a difference of 0 in the mean steps of the two dataset. There is a difference of -1.076381110^{4} in the median steps of the two dataset. There is a difference of 8.612950910^{4} in the total steps of the two dataset.
+
+## Are there differences in activity patterns between weekdays and weekends?
 # Create a new factor variable in the dataset with two levels - "weekend" and "weekday"
 DayType <- function(date) {
   day <- weekdays(date)
